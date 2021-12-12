@@ -1,6 +1,6 @@
 # articleforge
 
-![npm](https://img.shields.io/npm/v/articleforge.svg) ![license](https://img.shields.io/npm/l/articleforge.svg) ![github-issues](https://img.shields.io/github/issues/radicaldrew/articleforge.svg)  ![Circle CI build status](https://circleci.com/gh/radicaldrew/articleforge.svg?style=svg)
+![npm](https://img.shields.io/npm/v/articleforge.svg) ![license](https://img.shields.io/npm/l/articleforge.svg) ![github-issues](https://img.shields.io/github/issues/radicaldrew/articleforge.svg)
 
 articleforge rest client sdk
 
