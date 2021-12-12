@@ -2,7 +2,8 @@
   "name": "articleforge",
   "version": "1.0.0",
   "description": "articleforge rest client sdk",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "repository": "radicaldrew/articleforge",
   "author": {
     "name": "Andrew Karp",
