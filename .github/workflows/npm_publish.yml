@@ -16,9 +16,8 @@ jobs:
         registry-url: 'https://registry.npmjs.org'
     - run: npm install
     - run: npm run build
-    - name: version & publish
-      uses: geeman201/conventional-changelog-npm-publish/@v14
+    - run: npm publish --access public
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
+       
       
