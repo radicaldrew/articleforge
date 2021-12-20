@@ -1,5 +1,5 @@
-import axios from 'axios';
-
+import axios, {Method} from 'axios';
+import qs from 'qs';
 interface ArticleParams {
   keyword: string;
   sub_keywords?: string;
@@ -13,7 +13,7 @@ interface ArticleParams {
   rewrite_num: number;
 }
 
-export class ArticleForge {
+class ArticleForge {
   private key: string;
   private baseurl: string;
   private methods: Array<string>;
@@ -85,7 +85,7 @@ export class ArticleForge {
         return {error: 'keyword is required'};
       }
 
-      return await this.request('initiate_article', {
+      const queryParams = {
         keyword: params.keyword,
         sub_keywords: params.sub_keywords ? params.sub_keywords : '',
         length: params.keyword ? params.keyword : '',
@@ -96,7 +96,31 @@ export class ArticleForge {
         turing_spinner: params.turing_spinner ? params.turing_spinner : 0,
         quality: params.quality ? params.quality : 4,
         rewrite_num: params.rewrite_num ? params.rewrite_num : 5,
-      });
+      };
+
+      const data = qs.stringify(
+        (Object.assign({key: this.key}, queryParams),
+        {
+          encoder: function (str: String) {
+            return str.replace(/ /g, '+');
+          },
+        })
+      );
+
+      const method: Method = 'post';
+
+      const config = {
+        method,
+        url: `${this.baseurl}initiate_article`,
+        data,
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'User-Agent':
+            'Mozilla/5.0 (platform; rv:geckoversion) Gecko/geckotrail Firefox/firefoxversion',
+        },
+      };
+
+      return await axios(config);
     } catch (error) {
       return {error};
     }
@@ -139,3 +163,7 @@ export class ArticleForge {
     }
   }
 }
+
+module.exports = exports = ArticleForge;
+Object.defineProperty(exports, '__esModule', {value: true});
+export default ArticleForge;
